@@ -5,14 +5,14 @@
 <?php
   $db = new Database;
   $servicesList = $db->getServicesList();
-  var_dump($servicesList);
+  $conditionsList = $db->getConditionsList();
 ?>
 
- <div class="container">
+ <div class="container" id="register">
     <h1>Register</h1>
     <form class="form-horizontal" id="usrreg">
     <div class="block">
-    <h3>Organisation information</h3>
+    <h3>Information</h3>
     <div class="form-group">
     <label for="charityName" class="col-sm-2 control-label">Name</label>
     <div class="col-sm-10">
@@ -25,36 +25,19 @@
       <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
     </div>
   </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    <div class="form-group">
+    <label for="pass" class="col-sm-2 control-label">Password</label><br>
+        <div class="col-sm-10">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
   </div>
   <div class="form-group">
-    <label for="charityReg" class="col-sm-2 control-label">Background/description</label>
-    <div class="col-sm-10"><textarea class="form-control" form="usrreg" rows="3"></textarea></div>
+    <label for="charityReg" class="col-sm-2 control-label">Background</label><br>
+    <div class="col-sm-10"><textarea class="form-control" form="usrreg" rows="3" placeholder="Tell us a bit about yourself(optional)"></textarea></div>
   </div>
-  <div class="form-group">
-    <label for="conditions" class="col-sm-2 control-label">Conditions catered for</label>
-    <div class="col-sm-10"><textarea class="form-control" form="usrreg" rows="3"></textarea></div>
-  </div>
-  <div class="form-group">
-    <label for="services" class="col-sm-2 control-label">Service offered</label>
-    <?php while($service = $servicesList->fetch_assoc()) : ?>
-              <input type="checkbox" name="service" value="<?php echo($service['id']); ?>"><?php echo($service['service']); ?><br>
-      <?php endwhile; ?> 
-  </div>
-
   </div> <!-- end block -->
-  <div class="block"> 
-  <h3>Address</h3>
-  <div class="form-group">
-    <label for="streetname" class="col-sm-2 control-label">Street name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="streetname" placeholder="Enter first line of address">
-    </div>
-  </div>
+  <div class="block clearfix"> 
+  <h3>Location</h3>
    <div class="form-group">
     <label for="city" class="col-sm-2 control-label">City</label>
     <div class="col-sm-10">
@@ -62,34 +45,15 @@
     </div>
   </div>
    <div class="form-group">
-    <label for="website" class="col-sm-2 control-label">Enter postcode</label>
+    <label for="country" class="col-sm-2 control-label">Country</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="website" placeholder="Postcode">
+      <input type="text" class="form-control" id="website" placeholder="Country">
     </div>
   </div>
-  </div>
-
-  <div class="block">
- <h3>Contact informatiom</h3>
-  <div class="form-group">
-    <div class="form-group">
-    <label for="website" class="col-sm-2 control-label">Website</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="website" placeholder="Enter charity's website">
-    </div>
-  </div> 
-  <div class="form-group">
-    <label for="telnumber" class="col-sm-2 control-label">Tel</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="telnumber" placeholder="Enter charity's contact number">
-    </div>
-  </div> 
-    <div class="col-sm-offset-2 col-sm-10">
+   <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default" name="register">Register</button>
     </div>
   </div>
-  </div>
 </form>
  </div>
-
 <?php include('includes/footer.php'); ?>

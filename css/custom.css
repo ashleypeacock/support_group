@@ -21,7 +21,10 @@ body {
 
 .container#main {
 		margin-top: 25px;
+}
 
+.container#register {
+	width: 65%;
 }
 
 h2 {

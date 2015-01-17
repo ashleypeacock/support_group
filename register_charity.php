@@ -5,14 +5,14 @@
 <?php
   $db = new Database;
   $servicesList = $db->getServicesList();
-  var_dump($servicesList);
+  $conditionsList = $db->getConditionsList();
 ?>
 
- <div class="container">
-    <h1>Register</h1>
+ <div class="container" id="register">
+    <h1>Add organisation</h1>
     <form class="form-horizontal" id="usrreg">
     <div class="block">
-    <h3>Organisation information</h3>
+    <h3>Information</h3>
     <div class="form-group">
     <label for="charityName" class="col-sm-2 control-label">Name</label>
     <div class="col-sm-10">
@@ -26,13 +26,18 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="charityReg" class="col-sm-2 control-label">Background/description</label>
-    <div class="col-sm-10"><textarea class="form-control" form="usrreg" rows="3"></textarea></div>
+    <label for="charityReg" class="col-sm-2 control-label">Background</label>
+    <div class="col-sm-10"><textarea class="form-control" form="usrreg" rows="3" placeholder="Enter a summary or brief description"></textarea></div>
   </div>
   <div class="form-group">
-    <label for="conditions" class="col-sm-2 control-label">Conditions catered for</label>
-    <div class="col-sm-10"><textarea class="form-control" form="usrreg" rows="3"></textarea></div>
-  </div>
+    <label for="conditions" class="col-sm-2 control-label">Conditions catered</label><br><br><br>
+          <div class="row">
+          <?php while($condition = $conditionsList->fetch_assoc()) : ?>
+              <div class="col-md-3  col-md-offset-2">
+              <input type="checkbox" name="service" value="<?php echo($condition['id']); ?>"><?php echo($condition['name']); ?>
+              </div> 
+
+          <?php endwhile; ?>  </div>
   <div class="form-group">
     <label for="services" class="col-sm-2 control-label">Service offered</label> <br><br>
     <div class="row">
@@ -44,7 +49,7 @@
       <?php endwhile; ?>
       </div>
   </div>
-
+</div>
   </div> <!-- end block -->
   <div class="block"> 
   <h3>Address</h3>
@@ -62,7 +67,7 @@
     </div>
   </div>
    <div class="form-group">
-    <label for="website" class="col-sm-2 control-label">Enter postcode</label>
+    <label for="website" class="col-sm-2 control-label">Postcode</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="website" placeholder="Postcode">
     </div>

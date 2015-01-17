@@ -39,6 +39,55 @@ class Database {
 		}
 	}
 
+    /**
+     * Gets rows of services for charities
+     */
+	public function getServicesOffered($charityid) {
+		echo("<br>Looking for ".$charityid." <br>");
+		//$query = "SELECT organisation_services.servicesid FROM organisation_services LEFT JOIN charity ON charity.id=organisation_services.organisationid WHERE id=$charityid";
+		$query = "SELECT services.service FROM services LEFT JOIN organisation_services ON organisation_services.servicesid=services.id WHERE organisation_services.organisationid=$charityid";
+
+		$results = $this->link->query($query) or die($this->link->error.__LINE__);
+		echo($results->num_rows);
+		if($results->num_rows > 0) {
+			$row = $results->fetch_assoc();
+			var_dump($row);
+    		return $results;
+		} else {
+			echo "No result found";
+			return false;
+		}
+	}
+
+	/**
+     * Gets rows of services for an array of given charity ids
+     */
+	public function getServicesOfferedForCharities($charityids) {
+		$query = "SELECT * FROM conditions";
+		$results = $this->link->query($query) or die($this->link->error.__LINE__);
+		if($results->num_rows > 0) {
+    		return $results;
+		} else {
+			echo "No result found";
+			return false;
+		}
+
+	}
+
+	/**
+	 * Gets a list of conditions a user can select.
+	 */
+	public function getConditionsList() {
+		$query = "SELECT * FROM conditions";
+		$results = $this->link->query($query) or die($this->link->error.__LINE__);
+		if($results->num_rows > 0) {
+    		return $results;
+		} else {
+			echo "No result found";
+			return false;
+		}
+	}
+
 
 	public function getCharity($id) {
 		$query = "SELECT * FROM charity WHERE id=$id";

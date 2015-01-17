@@ -1,0 +1,30 @@
+body {
+  padding-top: 50px;
+  background-color: #f4f4f4;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.block {
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 15px;
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+.navbar {
+	margin-bottom: 30px;
+}
+
+.container#main {
+		margin-top: 25px;
+
+}
+
+h2 {
+	margin-top: 0px;
+}
+

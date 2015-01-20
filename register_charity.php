@@ -25,7 +25,11 @@
       <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
     </div>
   </div>
-  <div class="form-group">
+     <div class="form-group">
+        <label for="userFile" class="col-sm-2 control-label">Upload logo </label>
+          <input type="file" size="40" name="userFile" id="userFile"/><br />
+      </div>  
+<div class="form-group">
     <label for="charityReg" class="col-sm-2 control-label">Background</label>
     <div class="col-sm-10"><textarea class="form-control" form="usrreg" rows="3" placeholder="Enter a summary or brief description"></textarea></div>
   </div>

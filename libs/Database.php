@@ -7,7 +7,6 @@ class Database {
 	public $db_pass = DB_PASS;
 	public $db_name = DB_NAME;
 
-
 	public $link;
 	public $error;
 
@@ -34,7 +33,6 @@ class Database {
 		if($results->num_rows > 0) {
     		return $results;
 		} else {
-			echo "No result found";
 			return false;
 		}
 	}
@@ -43,18 +41,11 @@ class Database {
      * Gets rows of services for charities
      */
 	public function getServicesOffered($charityid) {
-		echo("<br>Looking for ".$charityid." <br>");
-		//$query = "SELECT organisation_services.servicesid FROM organisation_services LEFT JOIN charity ON charity.id=organisation_services.organisationid WHERE id=$charityid";
 		$query = "SELECT services.service FROM services LEFT JOIN organisation_services ON organisation_services.servicesid=services.id WHERE organisation_services.organisationid=$charityid";
-
 		$results = $this->link->query($query) or die($this->link->error.__LINE__);
-		echo($results->num_rows);
 		if($results->num_rows > 0) {
-			$row = $results->fetch_assoc();
-			var_dump($row);
     		return $results;
 		} else {
-			echo "No result found";
 			return false;
 		}
 	}
@@ -112,18 +103,4 @@ class Database {
 	}
 
 }
-/** Questions **/ 		
-
-
-// Why does this not show a connection failed error?
-/*
-		$this->link = new mysqli($this->host, $this->username, $this->db_pass, $this->db_name);
-
-		if(!$this->link) {
-			$this->error = "Connection failed".$this->link->connect_error;
-			return false;
-		} else {
-			echo "Success!";
-		}
-*/
 ?>

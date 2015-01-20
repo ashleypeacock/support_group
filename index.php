@@ -1,6 +1,8 @@
 <?php include('config/config.php'); ?>
 <?php	include('includes/header.php'); ?>
 <?php include('libs/Database.php'); ?>
+<?php include 'helpers/text_formatter.php'; ?>
+
 
 <?php  
   $db = new Database;

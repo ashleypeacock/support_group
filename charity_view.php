@@ -2,6 +2,7 @@
 include('config/config.php');
 include('includes/header.php');
 include('libs/Database.php');
+include 'helpers/text_formatter.php'; 
 ?>
 
 
@@ -10,6 +11,13 @@ include('libs/Database.php');
   if(isset($_GET['id'])) {
     $id = (int)$_GET['id'];
     $charity = $db->getCharity($id);
+    $servicesOffered = $db->getServicesOffered($id); 
+    if($servicesOffered) {
+      $serviceNames = getFormattedColumn('service', $servicesOffered);
+    } else {
+      $serviceNames = "None";
+    }
+      
   }
 ?>
 
@@ -30,7 +38,7 @@ include('libs/Database.php');
       <tr><td><strong>Telephone number</strong></td><td><?php echo $charity['tel']; ?></td></tr>
       <tr><td><strong>Email</strong></td><td><?php echo $charity['email']; ?></td></tr> 
        <tr><td><strong>Services offered</strong></td><td>  
-        <?php echo $charity['services']; ?>
+        <?php echo $serviceNames; ?>
        </td></tr> 
      
       </table>

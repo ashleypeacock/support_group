@@ -7,8 +7,15 @@
       <?php while($row = $charities->fetch_assoc()) : ?>
       	<?php 
       		$servicesOffered = $db->getServicesOffered($row['id']); 
+      		if($servicesOffered) {
+      			$serviceNames = getFormattedColumn('service', $servicesOffered);
+      		} else {
+      			$serviceNames = "None";
+      		}
       	?>
-      	<tr> <td> <a href="charity_view.php?id=<?php echo $row['id']?>"><?php echo $row['name']?></a></td> <td><?php echo $row['streetname']?></td><td><?php echo $row['services']?></td><td></td></tr>
+      	<tr> <td> <a href="charity_view.php?id=<?php echo $row['id']?>"><?php echo $row['name']?></a></td> <td><?php echo $row['streetname']?></td>
+      	<td><?php echo($serviceNames); ?></td>
+      	<td></td></tr>
       <?php endwhile; ?>
       </table>
     </div>

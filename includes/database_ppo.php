@@ -10,7 +10,7 @@ class Database{
 
     private $stmt;
  
-    public function __construct(){
+    public function __construct() {
         // Set DSN
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
         // Set options
@@ -55,7 +55,7 @@ class Database{
     	$this->stmt->bindValue($param, $value, $type);
 	}
 
-	public function single(){
+	public function single() {
     	$this->execute();
     	return $this->stmt->fetch(PDO::FETCH_ASSOC);
 	}

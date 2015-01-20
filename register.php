@@ -6,8 +6,7 @@
   $db = new Database;
   $servicesList = $db->getServicesList();
   $conditionsList = $db->getConditionsList();
-  var_dump($_POST);
-  echo '<br>';
+
 if(isset($_POST['register'])) {
       $registerData = array();
       $registerData['username'] = $_POST['username'];
@@ -16,6 +15,15 @@ if(isset($_POST['register'])) {
       $registerData['password2'] = $_POST['password2'];
       $registerData['city'] = $_POST['city'];
       $registerData['country'] = $_POST['country'];
+
+      $register = $db->register($registerData);
+      if($register === TRUE) { // success
+        $msg = "You have successfully registered!";
+        header('Location: index.php?msg='.$msg);
+      } else { // failure
+        $msg = '<div class="alert alert-danger">'.$register.'</div>';
+        echo($msg);
+      }
   }
 ?>
 
@@ -37,14 +45,15 @@ if(isset($_POST['register'])) {
     </div>
   </div>
     <div class="form-group">
-    <label for="pass" class="col-sm-2 control-label">Password</label><br>
+    <label for="password" class="col-sm-2 control-label">Password</label>
         <div class="col-sm-10">
-    <input name="password "type="password" class="form-control" id="pass" placeholder="Password">
+    <input name="password"type="password" class="form-control" id="pass" placeholder="Password">
+    </div>
     </div>
     <div class="form-group">
-    <label for="confirmPassword" class="col-sm-2 control-label">Confirm password</label><br>
+    <label for="password2" class="col-sm-2 control-label">Confirm password</label><br>
         <div class="col-sm-10">
-    <input name ="password2" type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
+    <input name ="password2" type="password" class="form-control" id="password2" placeholder="Confirm password">
     </div>
   </div>
   </div> <!-- end block -->

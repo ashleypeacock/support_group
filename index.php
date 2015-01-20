@@ -7,6 +7,10 @@
 <?php  
   $db = new Database;
   $charities = $db->getAllCharities();
+  if(isset($_GET['msg'])) {
+    $msg_display = '<div class="alert alert alert-success">'.$_GET['msg'].'</div>';
+    echo($msg_display);
+  }
 ?>
 
   <div class="container" id="main">

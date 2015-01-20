@@ -1,3 +1,5 @@
+<?php include('helpers/validation.php'); ?> 
+
 <?php
 
 class Database {
@@ -62,6 +64,30 @@ class Database {
 			echo "No result found";
 			return false;
 		}
+
+	}
+
+	public function register($registerData) {
+		$username = $registerData['username'];
+      	$email = $registerData['email'];
+      	$password = $registerData['password'];
+      	$password2 = $registerData['password2'];
+      	$city = $registerData['city'];
+      	$country = $registerData['country'];
+      	$blank = "";
+      	
+      	$validateData = validateRegistration($registerData);
+      	if($validateData === true) {
+			$query = "INSERT INTO `users` (`username`, `email`, `password`, `city`, `country`, `about`) VALUES ('$username', '$email', '$password', '$city', '$country', '$blank')";
+      		$result = $this->link->query($query) or die($this->link->error.__LINE__);
+      		if($result) {
+      			return true;
+      		} else {
+      			return "Error registering.";
+      		}
+      	} else {
+      		return $validateData;
+      	}
 
 	}
 

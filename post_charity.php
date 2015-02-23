@@ -1,0 +1,4 @@
+<?php 
+	$charityName = $_GET[];
+	$
+?>

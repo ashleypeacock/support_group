@@ -1,16 +1,24 @@
 <?php include('config/config.php'); ?>
 <?php	include('includes/header.php'); ?>
-<?php include('libs/Database.php'); ?>
+<?php include('includes/Database.php'); ?>
 <?php include 'helpers/text_formatter.php'; ?>
 
 
 <?php  
   $db = new Database;
-  $charities = $db->getAllCharities();
+  /*$charities = $db->getAllCharities();*/
   if(isset($_GET['msg'])) {
     $msg_display = '<div class="alert alert alert-success">'.$_GET['msg'].'</div>';
     echo($msg_display);
   }
+
+  $db->query("SELECT * FROM charity");
+  $charities = $db->resultset();
+  //var_dump($charities);
+
+  error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 ?>
 
   <div class="container" id="main">

@@ -22,7 +22,7 @@ include 'helpers/text_formatter.php';
 ?>
 
  <div class="container">
-  <div class="block">
+  <div class="block charityview">
   <h1><?php echo $charity['name'] ?> </h1>
   <img src="images/kca.jpeg" class="pull-right"></img>
   <h2>Summary</h2>

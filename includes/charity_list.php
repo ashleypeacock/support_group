@@ -2,20 +2,22 @@
 <div class="block">
       <h2> Support group listings </h2>
       <div class="pull-right"> <p>Sort</p></div>
-      <table class="table">
+      <table class="table listtable">
       <tr> <th> Charity name</th> <th>Location </th><th>Services</th> <th> Distance </th></tr>
-      <?php while($row = $charities->fetch_assoc()) : ?>
+      
+      <?php foreach($charities as $charity) : ?>
+            Hi
       	<?php 
-      		$servicesOffered = $db->getServicesOffered($row['id']); 
+      		$servicesOffered = $db->getServicesOffered($charity['id']); 
       		if($servicesOffered) {
       			$serviceNames = getFormattedColumn('service', $servicesOffered);
       		} else {
       			$serviceNames = "None";
       		}
       	?>
-      	<tr> <td> <a href="charity_view.php?id=<?php echo $row['id']?>"><?php echo $row['name']?></a></td> <td><?php echo $row['streetname']?></td>
+      	<tr> <td> <a href="charity_view.php?id=<?php echo $charity['id']; ?>"><?php echo $charity['name']; ?></a></td> <td><?php echo $charity['streetname']; ?></td>
       	<td><?php echo($serviceNames); ?></td>
       	<td></td></tr>
-      <?php endwhile; ?>
+      <?php endforeach ; ?>
       </table>
     </div>

@@ -5,7 +5,7 @@
 	 */
 	function getFormattedColumn($columnName, $results) {
 			$var = "";
-			while ($row = $results->fetch_assoc()) {
+			foreach ($results as $row) {
   				$var.=$row[$columnName].", ";
 			}
 			return $var;

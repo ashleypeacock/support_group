@@ -67,7 +67,14 @@ class Database {
 
 	}
 
+	public function accountUnique() {
+		
+	}
+
 	public function register($registerData) {
+		if(!accountUnique($registerData)) {
+			return false;
+		}
 		$username = $registerData['username'];
       	$email = $registerData['email'];
       	$password = $registerData['password'];
@@ -126,6 +133,20 @@ class Database {
 		} else {
 			return false;
 		}
+	}
+
+	public function getPendingCharities() {
+		$query = "SELECT * FROM Applications LEFT JOIN charity ON Applications.charity_id=charity.id";
+		$results = $this->link->query($query) or die($this->link->error.__LINE__);
+		if($results->num_rows > 0) {
+    		return $results;
+		} else {
+			return false;
+		}
+	}
+
+	public function acceptApplication($charityid) {
+
 	}
 
 }

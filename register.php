@@ -1,6 +1,8 @@
 <?php include('config/config.php'); ?>
 <?php	include('includes/header.php'); ?>
-<?php include('libs/Database.php'); ?>
+<?php include('libs/Database.php'); 
+      include('config/config.php');
+?>
 
 <?php
   $db = new Database;
@@ -19,6 +21,9 @@ if(isset($_POST['register'])) {
       $register = $db->register($registerData);
       if($register === TRUE) { // success
         $msg = "You have successfully registered!";
+        $message = "Thankyou for registering ".$registerData['username'].'. You may now login and add a charity to be listed from the main site.';
+        $message = wordwrap($message, 70, "\r\n");
+        mail($registerData['email'], SITE_NAME.' registration', $message);
         header('Location: index.php?msg='.$msg);
       } else { // failure
         $msg = '<div class="alert alert-danger">'.$register.'</div>';

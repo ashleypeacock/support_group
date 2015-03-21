@@ -18,8 +18,10 @@
 <div class="container">
 
 <div class="block">
-	<h2> Pending applications</h2> </div>
+	<h2> Pending applications</h2> 
 	<p>On this page you can view pending charities and approve them.</p>
+
+  </div>
 	<div class="block">
 	<table class="table">
 	

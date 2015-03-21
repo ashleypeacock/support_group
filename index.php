@@ -12,7 +12,7 @@
     echo($msg_display);
   }
 
-  $db->query("SELECT * FROM charity");
+  $db->query("SELECT * FROM charity WHERE approved=1");
   $charities = $db->resultset();
 
 ?>

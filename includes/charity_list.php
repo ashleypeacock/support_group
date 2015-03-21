@@ -6,7 +6,6 @@
       <tr> <th> Charity name</th> <th>Location </th><th>Services</th> <th> Distance </th></tr>
       
       <?php foreach($charities as $charity) : ?>
-            Hi
       	<?php 
       		$servicesOffered = $db->getServicesOffered($charity['id']); 
       		if($servicesOffered) {

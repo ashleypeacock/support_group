@@ -72,9 +72,9 @@ class Database {
 	}
 
 	public function register($registerData) {
-		if(!accountUnique($registerData)) {
+		/*if(!accountUnique($registerData)) {
 			return false;
-		}
+		}*/
 		$username = $registerData['username'];
       	$email = $registerData['email'];
       	$password = $registerData['password'];
@@ -82,6 +82,12 @@ class Database {
       	$city = $registerData['city'];
       	$country = $registerData['country'];
       	$blank = "";
+
+      	if($password != $password2) {
+      		return false;
+      	} else {
+      		$password = md5($password);
+      	}
       	
       	$validateData = validateRegistration($registerData);
       	if($validateData === true) {
@@ -98,6 +104,15 @@ class Database {
 
 	}
 
+	public function login($email, $password) {
+		$query = "SELECT `id`, `username` FROM `users` WHERE email='$email' AND password='$password'";
+		$result = $this->link->query($query) or die($this->link->error.__LINE__);
+		if($result->num_rows > 0) {
+			$row = $result->fetch_assoc();
+    		return $row;
+		}
+	}
+
 	/**
 	 * Gets a list of conditions a user can select.
 	 */
@@ -111,7 +126,6 @@ class Database {
 			return false;
 		}
 	}
-
 
 	public function getCharity($id) {
 		$query = "SELECT * FROM charity WHERE id=$id";

@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    $isLoggedIn = false;
+    if(isset($_SESSION['userid'])) {
+      $userId = $_SESSION['userid'];
+      $username= $_SESSION['username'];
+      $isLoggedIn = true;
+    }
+?>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -40,16 +50,24 @@
             <li><a href="#forums">Forums</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-           <form class="navbar-form navbar-right">
+          <?php if(!isset($userId)) : ?>
+           <form class="navbar-form navbar-right" method="POST" action="login.php">
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+              <input type="text" placeholder="Email" name="email" class="form-control">
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+              <input type="password" name="password" placeholder="Password" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
             <a href="register.php" class="btn btn-success">Register</a>
           </form>
+        <?php else : ?>
+          <form class="navbar-form navbar-right" method="POST" action="logout.php">
+            <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+
+        <?php endif; ?> 
+
         </div><!--/.nav-collapse -->
       </div>
     </nav>

@@ -1,8 +1,6 @@
 <?php include('config/config.php'); ?>
 <?php	include('includes/header.php'); ?>
-<?php include('libs/Database.php'); 
-      include('config/config.php');
-?>
+<?php include('libs/Database.php'); ?>
 
 <?php
   $db = new Database;

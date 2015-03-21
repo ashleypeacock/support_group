@@ -86,7 +86,7 @@ class Database{
         $this->query($query);
         $this->bind(":charityid", $charityid);
         $results = $this->resultset();
-        var_dump($results);
+//        var_dump($results);
         if($results) {
             return $results;
         } else {

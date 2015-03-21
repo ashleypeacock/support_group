@@ -14,10 +14,6 @@
 
   $db->query("SELECT * FROM charity");
   $charities = $db->resultset();
-  //var_dump($charities);
-
-  error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 ?>
 

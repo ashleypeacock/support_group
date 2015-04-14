@@ -65,7 +65,9 @@
           <form class="navbar-form navbar-right" method="POST" action="logout.php">
             <button type="submit" class="btn btn-danger">Logout</button>
           </form>
-
+ <div class="navbar-text navbar-right">
+<?php echo("Welcome ".$username); ?>
+</div> 
         <?php endif; ?> 
 
         </div><!--/.nav-collapse -->

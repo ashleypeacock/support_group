@@ -8,6 +8,36 @@
   $conditionsList = $db->getConditionsList();
 ?>
 
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    
+<script> 
+$(document).ready(function() {
+  $('#find-address').click(function() {
+    var postcode = $('#postcode').val();
+    
+  });
+});
+</script>
+    <script>
+var map;
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(-34.397, 150.644)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+ }
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+    <script> </script>
+
+
  <div class="container" id="register">
     <h1>Add organisation</h1>
     <form class="form-horizontal" id="usrreg" action="post_charity.php">
@@ -56,7 +86,15 @@
 </div>
   </div> <!-- end block -->
   <div class="block"> 
-  <h3>Address</h3>
+  <h3>Location</h3>
+
+  <div class="row">
+        <div class="col-md-6">
+  <div id="map-canvas"></div>
+  </div>
+  
+  <div class="col-md-6">
+
   <div class="form-group">
     <label for="streetname" class="col-sm-2 control-label">Street name</label>
 
@@ -73,8 +111,13 @@
    <div class="form-group">
     <label for="website" class="col-sm-2 control-label">Postcode</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="website" placeholder="Postcode">
+      <input type="text" class="form-control" id="postcode" placeholder="Postcode">
     </div>
+  </div>
+  <div class="form-group">
+            <a id="find-address" class="btn btn-info"> Find address</a>
+  </div>
+  </div>
   </div>
   </div>
 

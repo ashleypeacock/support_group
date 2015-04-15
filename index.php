@@ -3,7 +3,6 @@
 <?php include('includes/Database.php'); ?>
 <?php include 'helpers/text_formatter.php'; ?>
 
-
 <?php  
   $db = new Database;
   /*$charities = $db->getAllCharities();*/

@@ -58,10 +58,7 @@
 
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="#about">News</a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="#forums">Forums</a></li>
-            <li><a href="#contact">Contact</a></li>
           </ul>
           <?php if(!$isLoggedIn) : ?>
            <form class="navbar-form navbar-right" method="POST" action="login.php">

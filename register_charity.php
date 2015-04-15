@@ -12,16 +12,10 @@
 
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     
-<script> 
-$(document).ready(function() {
-  $('#find-address').click(function() {
-    var postcode = $('#postcode').val();
-    
-  });
-});
-</script>
     <script>
 var map;
+var lat;
+var lng;
 function initialize() {
   var mapOptions = {
     zoom: 8,
@@ -30,13 +24,32 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
  }
+   function codeAddress(address) {
+    var geocoder = new google.maps.Geocoder();
+            geocoder.geocode( { 'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                       map.setCenter(results[0].geometry.location);
+                       var marker = new google.maps.Marker({
+                          map: map,
+                          position: results[0].geometry.location
+                       });
+              } else {
+                      alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+        }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
-
-    <script> </script>
-
+<script> 
+$(document).ready(function() {
+  $('#find-address').click(function() {
+    var postcode = $('#postcode').val();
+    codeAddress(postcode);
+  });
+});
+</script>
 
  <div class="container" id="register">
     <h1>Add organisation</h1>
@@ -79,7 +92,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
               <div class="col-md-3  col-md-offset-2">
               <input type="checkbox" name="service" value="<?php echo($service['id']); ?>"><?php echo($service['service']); ?>
               </div> 
-
       <?php endwhile; ?>
       </div>
   </div>

@@ -10,18 +10,25 @@
   		$userId = $db->login($email, md5($password));
 
       if($userId['id'] == null) {
-        header("Location: index.php?msg=Incorrect login details");
-      }
-  		//echo('User ID is '.$userId['id']);
-  		session_start();
+        header("Location: index.php?alert=Incorrect login details");
+      } else {
 
-  		$_SESSION['userid'] = $userId['id'];
-  		$_SESSION['username'] = $userId['username'];
+  		  //echo('User ID is '.$userId['id']);
+  		  session_start();
 
-      //var_dump($userId['id']);
-      //var_dump($userId['username']);
+        $isAdmin = $db->checkAdmin($userId['id']);
 
-  		header("Location: index.php?msg=Successfully logged in");
+        if($isAdmin)
+          $_SESSION['admin'] = 1;
+
+  		  $_SESSION['userid'] = $userId['id'];
+  		  $_SESSION['username'] = $userId['username'];
+
+        //var_dump($userId['id']);
+        //var_dump($userId['username']);
+
+  		  header("Location: index.php?msg=Successfully logged in");
+    }
 
 	}
 

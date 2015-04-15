@@ -159,6 +159,16 @@ class Database {
 		}
 	}
 
+	public function checkAdmin($userId) {
+		$query = "SELECT * FROM admins WHERE admins.userid=$userId";
+		$results = $this->link->query($query) or die($this->link->error.__LINE__);
+		if($results->num_rows > 0) {
+    		return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function acceptApplication($charityid) {
 
 	}

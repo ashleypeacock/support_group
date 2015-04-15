@@ -6,6 +6,14 @@
       $username= $_SESSION['username'];
       $isLoggedIn = true;
     }
+
+    if(isset($_SESSION['admin'])) {
+      if($_SESSION['admin'] == 1) {
+        $isAdmin = true;
+      }
+    } else {
+      $isAdmin = false;
+    }
 ?>
 
 <html>
@@ -25,6 +33,9 @@
     <!-- Custom styles for this template -->
     <link href="css/custom.css" rel="stylesheet">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
@@ -42,7 +53,9 @@
           </button>
           <a class="navbar-brand" href="index.php">Support group directory</a>
         </div>
+
         <div id="navbar" class="collapse navbar-collapse">
+
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
             <li><a href="#about">News</a></li>
@@ -50,7 +63,7 @@
             <li><a href="#forums">Forums</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <?php if(!isset($userId)) : ?>
+          <?php if(!$isLoggedIn) : ?>
            <form class="navbar-form navbar-right" method="POST" action="login.php">
             <div class="form-group">
               <input type="text" placeholder="Email" name="email" class="form-control">
@@ -68,6 +81,18 @@
  <div class="navbar-text navbar-right">
 <?php echo("Welcome ".$username); ?>
 </div> 
+
+       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+          <?php if($isAdmin) : ?>
+            <li><a href="applications.php">Admin</a></li>
+          <?php endif; ?>
+            <li><a href="register_charity.php">Register charity</a></li>
+          </ul>
+        </li>
+      </ul>
         <?php endif; ?> 
 
         </div><!--/.nav-collapse -->

@@ -3,6 +3,12 @@
  include('includes/header.php');
  include('libs/Database.php'); 
  include 'helpers/text_formatter.php'; 
+
+ if(!$isAdmin) {
+  header("Location: index.php?alert=You cannot access that. You are not an admin.");
+  exit;
+ }
+
 ?>
 
 <?php  
@@ -25,7 +31,7 @@
 	<div class="block">
 	<table class="table">
 	
-      <tr> <th> Accept </th> <th> Charity name</th> <th>Location </th><th>Services</th> <th> Distance </th></tr>
+      <tr> <th> Select </th> <th> Charity name</th> <th>Location </th><th>Services</th> <th> Distance </th></tr>
       <?php while($row = $charities->fetch_assoc()) : ?>
       	<?php 
       		$servicesOffered = $db->getServicesOffered($row['id']); 

@@ -10,6 +10,9 @@
   if(isset($_GET['msg'])) {
     $msg_display = '<div class="alert alert alert-success">'.$_GET['msg'].'</div>';
     echo($msg_display);
+  } else if(isset($_GET['alert'])) {
+    $msg_display = '<div class="alert alert-danger" role="alert">'.$_GET['alert'].'</div>';
+    echo($msg_display);
   }
 
   $db->query("SELECT * FROM charity WHERE approved=1");

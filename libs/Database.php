@@ -159,6 +159,16 @@ class Database {
 		}
 	}
 
+	public function getUsersPendingCharities($userId) {
+		$query = "SELECT * FROM Applications LEFT JOIN charity ON Applications.charity_id=charity.id WHERE charity.userid = $userId";
+		$results = $this->link->query($query) or die($this->link->error.__LINE__);
+		if($results->num_rows > 0) {
+    		return $results;
+		} else {
+			return false;
+		}
+	}
+
 	public function checkAdmin($userId) {
 		$query = "SELECT * FROM admins WHERE admins.userid=$userId";
 		$results = $this->link->query($query) or die($this->link->error.__LINE__);

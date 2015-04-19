@@ -53,12 +53,11 @@
           </button>
           <a class="navbar-brand" href="index.php">Support group directory</a>
         </div>
-
         <div id="navbar" class="collapse navbar-collapse">
-
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>
+            <li><a href="#">News</a></li>
           </ul>
           <?php if(!$isLoggedIn) : ?>
            <form class="navbar-form navbar-right" method="POST" action="login.php">
@@ -87,6 +86,7 @@
             <li><a href="applications.php">Admin</a></li>
           <?php endif; ?>
             <li><a href="register_charity.php">Register charity</a></li>
+            <li><a href="pending_applications.php">Pending applications</a></li>
           </ul>
         </li>
       </ul>

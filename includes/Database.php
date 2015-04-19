@@ -78,6 +78,16 @@ class Database{
     	return $this->dbh->beginTransaction();
 	}
 
+    function placeholders($text, $count=0, $separator=","){
+        $result = array();
+        if($count > 0){
+            for($x=0; $x<$count; $x++){
+                $result[] = $text;
+        }
+    }
+    return implode($separator, $result);
+    }
+
     /**
      * Gets rows of services for charities
      */
@@ -86,12 +96,49 @@ class Database{
         $this->query($query);
         $this->bind(":charityid", $charityid);
         $results = $this->resultset();
-//        var_dump($results);
         if($results) {
             return $results;
         } else {
             return false;
         }
+    }
+
+    /**
+     * Array of charity details to insert. 
+     **/
+    public function registerCharity($charityDetails, $servicesOffered, $conditionsCateredFor) {
+        $name = $charityDetails['name'];
+        $email = $charityDetails['email'];
+        $email = $charityDetails['website'];
+        $email = $charityDetails['tel'];
+        $lat = $charityDetails['lat'];
+        $lng = $charityDetails['lng'];
+        $query = "INSERT INTO services.service FROM services LEFT JOIN organisation_services ON organisation_services.servicesid=services.id WHERE organisation_services.organisationid = :charityid";
+        $this->query($query);
+        $this->bind(":charityid", $charityid);
+        $results = $this->execute();
+        if($results) {
+            return addApplication($charityid);
+        } else {
+            return false;
+        }
+    }
+
+    public function addApplication($charityid) {
+        $query = "INSERT INTO Applications(`charity_id`, `status`) VALUES (:charityid, :status)";
+        $this->query($query);
+        $this->bind(":charityid", $charityid);
+        $this->bind(":status", 0);
+        $results = $this->execute();
+        if($results) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function multipleAddServices($servicesArray) {
+
     }
 
 }
